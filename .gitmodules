@@ -1,3 +1,53 @@
-[submodule "/Users/nicolasdalessandro/Desktop/front-end-development/cfu-ejercios"]
-	path = /Users/nicolasdalessandro/Desktop/front-end-development/cfu-ejercios
-	url = https://github.com/nicodalessandro11/cfu-ejercios
+[submodule "amazon-class01-apr23"]
+    path = amazon-class01-apr23
+    url = https://github.com/nicodalessandro11/amazon-class01-apr23
+
+[submodule "cfu-ejercios"]
+    path = cfu-ejercios
+    url = https://github.com/nicodalessandro11/cfu-ejercicios
+
+[submodule "labs/s001/lab1-ironhack-vue"]
+    path = labs/s001/lab1-ironhack-vue
+    url = https://github.com/nicodalessandro11/lab1-ironhack-vue
+
+[submodule "labs/s001/lab2-ironhack-vue"]
+    path = labs/s001/lab2-ironhack-vue
+    url = https://github.com/nicodalessandro11/lab2-ironhack-vue
+
+[submodule "labs/s002/lab-css-recipes-clone-es"]
+    path = labs/s002/lab-css-recipes-clone-es
+    url = https://github.com/nicodalessandro11/lab-css-recipes-clone-es.git
+
+[submodule "labs/s002/lab-css-spotify-clone-es"]
+    path = labs/s002/lab-css-spotify-clone-es
+    url = https://github.com/nicodalessandro11/lab-css-spotify-clone-es.git
+
+[submodule "labs/s003/lab-js-basic-algorithms-es"]
+    path = labs/s003/lab-js-basic-algorithms-es
+    url = https://github.com/nicodalessandro11/lab-js-basic-algorithms-es.git
+
+[submodule "labs/s004/lab-js-functions-and-arrays-es"]
+    path = labs/s004/lab-js-functions-and-arrays-es
+    url = https://github.com/nicodalessandro11/lab-js-functions-and-arrays-es.git
+
+[submodule "labs/s004/lab-js-greatest-movies-es"]
+    path = labs/s004/lab-js-greatest-movies-es
+    url = https://github.com/nicodalessandro11/lab-js-greatest-movies-es.git
+
+[submodule "labs/s005/lab-dom-ironhack-cart-es"]
+    path = labs/s005/lab-dom-ironhack-cart-es
+    url = https://github.com/nicodalessandro11/lab-dom-ironhack-cart-es.git
+
+[submodule "labs/s006/lab-es6-promises-es"]
+    path = labs/s006/lab-es6-promises-es
+    url = n/a
+
+[submodule "labs/s006/lab-javascript-chronometer-es"]
+    path = labs/s006/lab-javascript-chronometer-es
+    url = https://github.com/nicodalessandro11/lab-javascript-chronometer-es.git
+
+[submodule "proyecto1"]
+    path = proyecto1
+    url = https://github.com/nicodalessandro11/proyecto1IronWeb
+
+
