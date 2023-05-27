@@ -33,7 +33,7 @@
 |	|_lab-es6-promises-es: n/a
 |	|_lab-javascript-chronometer-es: https://github.com/nicodalessandro11/lab-javascript-chronometer-es.git
 |
-|_ proyecto1: https://github.com/nicodalessandro11/proyecto1IronWeb
+|_ proyecto1: https://github.com/nicodalessandro11/proyecto1
 </pre>
 
 ## Contact
