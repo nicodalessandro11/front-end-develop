@@ -4,7 +4,7 @@
 
 [submodule "cfu-ejercios"]
     path = cfu-ejercios
-    url = https://github.com/nicodalessandro11/cfu-ejercicios
+    url = https://github.com/nicodalessandro11/cfu-ejercios
 
 [submodule "labs/s001/lab1-ironhack-vue"]
     path = labs/s001/lab1-ironhack-vue
