@@ -48,6 +48,4 @@
 
 [submodule "proyecto1"]
     path = proyecto1
-    url = https://github.com/nicodalessandro11/proyecto1IronWeb
-
-
+    url = https://github.com/nicodalessandro11/proyecto1
