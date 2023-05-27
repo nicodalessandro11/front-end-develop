@@ -2,8 +2,8 @@
     path = amazon-class01-apr23
     url = https://github.com/nicodalessandro11/amazon-class01-apr23
 
-[submodule "cfu-ejercios"]
-    path = cfu-ejercios
+[submodule "cfu-ejercicios"]
+	path = cfu-ejercicios
     url = https://github.com/nicodalessandro11/cfu-ejercios
 
 [submodule "labs/s001/lab1-ironhack-vue"]
