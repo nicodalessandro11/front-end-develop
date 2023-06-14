@@ -46,6 +46,14 @@
     path = labs/s006/lab-javascript-chronometer-es
     url = https://github.com/nicodalessandro11/lab-javascript-chronometer-es.git
 
+[submodule "labs/s009/lab-vue-c-intro-es"]
+    path = labs/s009/lab-vue-c-intro-es
+    url = https://github.com/nicodalessandro11/lab-vue-c-intro-es.git
+
+[submodule "labs/s009/lab-vue-c-basics-es"]
+    path = labs/s009/lab-vue-c-basics-es
+    url = https://github.com/nicodalessandro11/lab-vue-c-basics-es.git
+
 [submodule "proyecto1"]
     path = proyecto1
     url = https://github.com/nicodalessandro11/proyecto1
