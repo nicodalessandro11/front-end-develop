@@ -54,6 +54,10 @@
     path = labs/s009/lab-vue-c-basics-es
     url = https://github.com/nicodalessandro11/lab-vue-c-basics-es.git
 
+[submodule "labs/s010/lab-vue-c-tweets-es"]
+    path = labs/s010/lab-vue-c-tweets-es
+    url = https://github.com/nicodalessandro11/lab-vue-c-tweets-es.git
+
 [submodule "proyecto1"]
     path = proyecto1
     url = https://github.com/nicodalessandro11/proyecto1
