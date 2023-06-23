@@ -2,5 +2,8 @@
   "devDependencies": {
     "sass": "^1.63.4",
     "sass-loader": "^12.6.0"
+  },
+  "dependencies": {
+    "vue-router": "^4.2.2"
   }
 }
