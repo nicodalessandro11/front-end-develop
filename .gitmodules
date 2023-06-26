@@ -62,6 +62,10 @@
     path = labs/s011/lab-vue-c-ironcontacts-es
     url = https://github.com/nicodalessandro11/lab-vue-c-ironcontacts-es.git
 
+[submodule "labs/s011/lab-vue-c-wiki-countries-es"]
+    path = labs/s011/lab-vue-c-wiki-countries-es
+    url = https://github.com/nicodalessandro11/lab-vue-c-ironcontacts-es.git
+
 [submodule "proyecto1"]
     path = proyecto1
     url = https://github.com/nicodalessandro11/proyecto1
