@@ -58,10 +58,6 @@
     path = labs/s010/lab-vue-c-tweets-es
     url = https://github.com/nicodalessandro11/lab-vue-c-tweets-es.git
 
-[submodule "labs/s011/lab-vue-c-wiki-countries-es"]
-    path = labs/s011/lab-vue-c-wiki-countries-es
-    url = https://github.com/nicodalessandro11/lab-vue-c-wiki-countries-es.git
-
 [submodule "labs/s011/lab-vue-c-ironcontacts-es"]
     path = labs/s011/lab-vue-c-ironcontacts-es
     url = https://github.com/nicodalessandro11/lab-vue-c-ironcontacts-es.git
