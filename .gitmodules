@@ -1,7 +1,3 @@
-[submodule "amazon-class01-apr23"]
-    path = amazon-class01-apr23
-    url = https://github.com/nicodalessandro11/amazon-class01-apr23
-
 [submodule "cfu-ejercicios"]
 	path = cfu-ejercicios
     url = https://github.com/nicodalessandro11/cfu-ejercios
