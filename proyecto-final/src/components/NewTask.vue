@@ -1,4 +1,3 @@
-<!-- Import necessary modules -->
 <script setup>
 import { ref } from "vue";
 import { useTaskStore } from "../stores/task";

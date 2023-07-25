@@ -26,25 +26,45 @@ onMounted(async () => {
   <!-- Include the Nav component -->
   <Nav />
 
+  <!-- Include the NewTask component -->
+
+  <div class="bg-container pt-5 pb-5">
+    <NewTask />
+  </div>
+
+
   <div class="wrapper container mt-4">
 
-
-    <!-- Include the NewTask component -->
-    <NewTask />
-
     <!-- Display the heading for tasks -->
-    <h1 class="task120-heading mb-4">Your Tasks</h1>
+    <h1 class="task120-heading mb-4 text-center">Your Tasks</h1>
 
     <!-- Use v-for to loop through tasks and display TaskItem component for each task -->
-    <div class="row">
-      <TaskItem class="col-md-4 mb-3" v-for="task in tasks" :key="task.id" :task="task" />
+    <div class="task-grid">
+      <TaskItem class="task-item mb-3 mx-2" v-for="task in tasks" :key="task.id" :task="task" />
     </div>
+
+
   </div>
 </template>
 
 <style scoped>
+.bg-container {
+  background-color: #6dcdff;
+}
+
 .wrapper {
   max-width: 800px;
+  margin: auto;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.task-item {
+  max-width: 300px;
   margin: auto;
 }
 

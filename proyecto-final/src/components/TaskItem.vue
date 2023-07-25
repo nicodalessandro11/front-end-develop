@@ -1,3 +1,28 @@
+<template>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title" :class="{ 'text-decoration-line-through': task.is_complete }">{{ task.title }}</h3>
+      <p class="card-text" :class="{ 'text-decoration-line-through': task.is_complete }">{{ task.description }}</p>
+
+      <div class="button-group mt-2">
+        <button class="btn btn-delete me-2" @click="deleteTask"><i class="fas fa-trash-alt"></i></button>
+        <button class="btn btn-complete me-2" @click="toggleComplete"><i class="fas fa-check-circle"></i></button>
+        <button class="btn btn-edit me-2" @click="updateToggle"><i class="fas fa-edit"></i></button>
+      </div>
+
+      <div v-if="inputUpdate">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" v-model="name" placeholder="Update task name">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" v-model="description" placeholder="Update task description">
+        </div>
+        <button class="btn btn-update" @click="updateTask"><i class="fas fa-arrow-circle-up"></i> Update</button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 // Import necessary modules from Vue
 import { ref, defineProps } from "vue";
@@ -45,31 +70,6 @@ const toggleComplete = () => {
   taskStore.completeTask(props.task.id, props.task.is_complete);
 };
 </script>
-
-<template>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title" :class="{ 'text-decoration-line-through': task.is_complete }">{{ task.title }}</h3>
-      <p class="card-text" :class="{ 'text-decoration-line-through': task.is_complete }">{{ task.description }}</p>
-
-      <div class="button-group mt-2">
-        <button class="btn btn-delete me-2" @click="deleteTask"><i class="fas fa-trash-alt"></i></button>
-        <button class="btn btn-complete me-2" @click="toggleComplete"><i class="fas fa-check-circle"></i></button>
-        <button class="btn btn-edit me-2" @click="updateToggle"><i class="fas fa-edit"></i></button>
-      </div>
-
-      <div v-if="inputUpdate">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" v-model="name" placeholder="Update task name">
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" v-model="description" placeholder="Update task description">
-        </div>
-        <button class="btn btn-update" @click="updateTask"><i class="fas fa-arrow-circle-up"></i> Update</button>
-      </div>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .card {

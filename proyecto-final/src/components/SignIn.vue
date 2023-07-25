@@ -18,12 +18,12 @@
         </div>
 
         <!-- Submit button -->
-        <button class="button" type="submit">Sign In</button>
+        <button class="btn btn-primary" type="submit">Sign In</button>
       </div>
     </form>
 
     <!-- Sign up link -->
-    <p>Don't have an account?
+    <p class="mt-3">Don't have an account?
       <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link" />
     </p>
   </div>

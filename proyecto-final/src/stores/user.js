@@ -1,13 +1,17 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
 
-// Esta tienda utiliza el Options API
+// Define the user store using pinia
 export const useUserStore = defineStore("user", {
+  // Define the initial state of the store
   state: () => ({
     user: null,
     profile: null,
   }),
+
+  // Define the actions for the store
   actions: {
+    // Fetch the user's data and profile from supabase
     async fetchUser() {
       const user = await supabase.auth.user();
       if (user) {
@@ -21,6 +25,7 @@ export const useUserStore = defineStore("user", {
       }
     },
 
+    // Sign up a new user and create a profile for them
     async signUp(email, password) {
       const { user, error } = await supabase.auth.signUp({
         email: email,
@@ -53,6 +58,7 @@ export const useUserStore = defineStore("user", {
       }
     },
 
+    // Sign in an existing user and fetch their profile
     async signIn(email, password) {
       const { user, error } = await supabase.auth.signIn(
         {
@@ -63,6 +69,7 @@ export const useUserStore = defineStore("user", {
           shouldCreateUser: false,
         }
       );
+
       if (error) throw error;
       if (user) {
         this.user = user;
@@ -72,16 +79,17 @@ export const useUserStore = defineStore("user", {
           .match({ user_id: this.user.id });
 
         if (profile) this.profile = profile[0];
-        // console.log('profile in store: ', profile);
       }
     },
 
+    // Sign out the current user
     async signOut() {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
     },
   },
 
+  // Enable state persistence in localStorage
   persist: {
     enabled: true,
     strategies: [
