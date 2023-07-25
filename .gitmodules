@@ -65,7 +65,11 @@
 [submodule "proyecto1"]
     path = proyecto1
     url = https://github.com/nicodalessandro11/proyecto1
+
+[submodule "proyecto-final"]
+    path = proyecto-final
+    url = https://github.com/nicodalessandro11/proyecto1
     
 [submodule "vue-task-project"]
 	path = vue-task-project
-	url = https://github.com/nicodalessandro11/vue-task-project.git
+	url = https://github.com/nicodalessandro11/proyecto-final-ironhack.git

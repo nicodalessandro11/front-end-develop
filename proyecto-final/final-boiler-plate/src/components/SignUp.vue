@@ -1,107 +1,122 @@
 <template>
-  <div class="container">
+  <div class="wrapper container mt-5">
+    <h3 class="header-title">ToDo App Sign-up</h3>
 
-    <div class="header">
-      <div class="header-description">
-        <h3 class="header-title">Register to ToDo App</h3>
-        <p class="header-subtitle">Start organizing your tasks!</p>
-      </div>
-    </div>
-
-    <form @submit.prevent="signUp" class="form-sign-in">
+    <!-- Form for sign in -->
+    <form @submit.prevent="signIn" class="form-sign-in">
       <div class="form">
+        <!-- Email input field -->
         <div class="form-input">
-          <label class="input-field-label">E-mail</label>
-          <input
-            type="email"
-            class="input-field"
-            placeholder="example@gmail.com"
-            id="email"
-            v-model="email"
-            required
-          />
+          <label class="input-field-label" for="email">E-mail</label>
+          <input type="email" class="input-field" placeholder="example@gmail.com" id="email" v-model="email" required />
         </div>
+
+        <!-- Password input field -->
         <div class="form-input">
-          <label class="input-field-label">Password</label>
-          <input
-            type="password"
-            class="input-field"
-            placeholder="**********"
-            id="password"
-            v-model="password"
-            required
-          />
+          <label class="input-field-label" for="password">Password</label>
+          <input type="password" class="input-field" placeholder="**********" id="password" v-model="password" required />
         </div>
-        <div class="form-input">
-          <label class="input-field-label">Confirm password</label>
-          <input
-            type="password"
-            class="input-field"
-            placeholder="**********"
-            id="confirmPassword"
-            v-model="confirmPassword"
-            required
-          />
-        </div>
-        <button class="button" type="submit">Sign Up</button>
-        <p>
-          Have an account?
-          <PersonalRouter
-            :route="route"
-            :buttonText="buttonText"
-            class="sign-up-link"
-          />
-        </p>
+
+        <!-- Submit button -->
+        <button class="button" type="submit">Sign In</button>
       </div>
     </form>
 
-    <div v-show="errorMsg">{{errorMsg}}</div>
+    <!-- Sign up link -->
+    <p>Don't have an account?
+      <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link" />
+    </p>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+// Import necessary modules and components
 import PersonalRouter from "./PersonalRouter.vue";
-import { supabase } from "../supabase";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
-import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
-// Route Variables
-const route = "/auth/login";
-const buttonText = "Sign In";
+// Define the route and button text for sign up link
+const route = "/auth/signup";
+const buttonText = "Sign Up";
 
-// Input Fields
+// Initialize reactive variables for form inputs
 const email = ref("");
 const password = ref("");
-const confirmPassword = ref("");
 
-// Error Message
-const errorMsg = ref("");
-
-// Router to push user once SignedUp to Log In
+// Initialize Vue router for redirects
 const redirect = useRouter();
 
-// Arrow function to SignUp user to supaBase with a timeOut() method for showing the error
-const signUp = async () => {
-  if (password.value === confirmPassword.value) {
-    try {
-      // calls the user store and send the users info to backend to logIn
-      await useUserStore().signUp(email.value, password.value);
-      // redirects user to the homeView
-      redirect.push({ path: "/auth/login" });
-    } catch (error) {
-      // displays error message
-      errorMsg.value = error.message;
-      // hides error message
-      setTimeout(() => {
-        errorMsg.value = null;
-      }, 5000);
-    }
-    return;
+// Define the sign in function
+const signIn = async () => {
+  try {
+    // Attempt to sign in with entered credentials
+    await useUserStore().signIn(email.value, password.value);
+
+    // If successful, redirect to home page
+    redirect.push({ path: "/" });
+
+  } catch (error) {
+    // If unsuccessful, alert with the error
+    alert(error);
   }
-  errorMsg.value = "error";
 };
 </script>
 
-<style></style>
+<!-- Style section -->
+<style scoped>
+.wrapper {
+  max-width: 800px;
+  margin: auto;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2em;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  color: #333;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.form-input {
+  margin-bottom: 1em;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  width: 100%;
+  padding: 0.5em;
+  background-color: #00688d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #00506b;
+}
+
+.sign-up-link {
+  color: #00688d;
+}
+
+.sign-up-link:hover {
+  text-decoration: underline;
+}
+</style>

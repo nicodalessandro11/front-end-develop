@@ -1,56 +1,65 @@
-<template>
-    <h1>Add a new Task</h1>
-    <div v-if="showErrorMessage">
-        <p class="error-text">{{ errorMessage }}</p>
-    </div>
-    <div>
-        <div class="input-field">
-            <input type="text" placeholder="Add a Task Title - Listen to Kendrick Lamar" v-model="name">
-        </div>
-        <div class="input-field">
-            <input type="text" placeholder="Add a Task Description - Look up Kendrick Lamar's FEAR album on spotify and listen to the whole album." v-model="description">
-        </div>
-        <button @click="addTask" class="button">Add</button>
-    </div>
-</template>
-
+<!-- Import necessary modules -->
 <script setup>
 import { ref } from "vue";
-import { useTaskStore } from "../stores/task"   
+import { useTaskStore } from "../stores/task";
 
+// Initialize taskStore using the useTaskStore function
 const taskStore = useTaskStore();
 
-// variables para los valors de los inputs
+// Create reactive variables using ref()
 const name = ref('');
 const description = ref('');
 
-// constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
+// Create reactive variables to handle error messages
 const showErrorMessage = ref(false);
-
-// const constant to save a variable that holds the value of the error message
 const errorMessage = ref(null);
 
-// Arrow function para crear tareas.
+// Function to add a task
 const addTask = () => {
-if(name.value.length === 0 || description.value.length === 0){
-    // Primero comprobamos que ningún campo del input esté vacío y lanzamos el error con un timeout para informar al user.
+    // Check if name or description is empty
+    if (name.value.length === 0 || description.value.length === 0) {
+        // Display an error message
+        showErrorMessage.value = true;
+        errorMessage.value = 'The task title or description is empty';
 
-    showErrorMessage.value = true;
-    errorMessage.value = 'The task title or description is empty';
-    setTimeout(() => {
-    showErrorMessage.value = false;
-    }, 5000);
+        // Hide the error message after 5 seconds
+        setTimeout(() => {
+            showErrorMessage.value = false;
+        }, 5000);
+    } else {
+        // If both name and description are provided, add the task to the taskStore
+        taskStore.addTask(name.value, description.value);
 
-} else {
-    // Aquí mandamos los valores a la store para crear la nueva Task. Esta parte de la función tenéis que refactorizarla para que funcione con emit y el addTask del store se llame desde Home.vue.
-
-    taskStore.addTask(name.value, description.value);
-    name.value = '';
-    description.value = '';
-}
+        // Clear the name and description fields
+        name.value = '';
+        description.value = '';
+    }
 };
-
 </script>
 
-<style></style>
+
+<template>
+    <div class="container mt-4">
+        <h1 class="mb-3">Add a new Task</h1>
+        <div v-if="showErrorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+        <div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Add a Task Title" v-model="name">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Add a Task Description" v-model="description">
+            </div>
+            <button @click="addTask" class="btn btn-primary">Add</button>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+.container {
+    max-width: 600px;
+}
+</style>
+
   
