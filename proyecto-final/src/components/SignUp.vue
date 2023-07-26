@@ -38,11 +38,10 @@
 
 <script setup>
 // Importing necessary modules and components from vue, vue-router, and your application
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
 import PersonalRouter from "./PersonalRouter.vue";
-import { supabase } from "../supabase";
 
 // Initializing references for form input fields and error message
 const email = ref("");

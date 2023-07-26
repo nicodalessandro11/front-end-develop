@@ -11,13 +11,13 @@
       </div>
 
       <div v-if="inputUpdate">
-        <div class="input-group mb-3">
+        <div class="input-group mt-2 mb-3">
           <input type="text" class="form-control" v-model="name" placeholder="Update task name">
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" v-model="description" placeholder="Update task description">
         </div>
-        <button class="btn btn-update" @click="updateTask"><i class="fas fa-arrow-circle-up"></i> Update</button>
+        <button class="btn btn-update" @click="updateTask">Update</button>
       </div>
     </div>
   </div>
@@ -35,8 +35,8 @@ import { useTaskStore } from "../stores/task";
 const taskStore = useTaskStore();
 
 // Create reactive variables using ref()
-const name = ref("");
-const description = ref("");
+const name = ref(props.task.title);
+const description = ref(props.task.description);
 
 // Define props for the component (task prop)
 const props = defineProps({

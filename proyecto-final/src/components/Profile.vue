@@ -1,5 +1,5 @@
 <template>
-  <div class=" wrapper container mt-5">
+  <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <button class="btn btn-primary mb-3" @click="editToggleProfile">Edit Profile</button>
@@ -35,10 +35,16 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../stores/user";
 import { supabase } from "../supabase";
+import { useModalStore } from '../stores/modal'
+import { watchEffect } from 'vue';
 
+// Use Modal store
+const modalStore = useModalStore()
+
+// Use Task store
 const userStore = useUserStore();
 
 // Defines a custom emit event
@@ -73,6 +79,7 @@ const updateProfile = async () => {
     bio: profile.value.bio,
     location: profile.value.location,
     website: profile.value.website,
+    avatar_url: profile.value.avatar_url, // add the avatar_url here
   };
 
   // Updates the profile in the database
@@ -85,18 +92,22 @@ const updateProfile = async () => {
   editToggleProfile()
 
   if (error) {
-    console.error(error);
+    modalStore.openModal(error.message, 'error');
   } else {
-    console.log("Profile Successfully updated");
+    // Fetch the user profile again to get the updated avatar URL
+    await userStore.fetchUser();
+    modalStore.openModal("Profile Successfully updated", 'success');
     // Emits the updated profile
     emit('updateProfileEmit', updatedProfileData)
   }
 };
 
+
 // Fetches the user when the component is mounted
 onMounted(async () => {
   await userStore.fetchUser();
 });
+
 </script>
 
 <style scoped>

@@ -1,6 +1,26 @@
+<template>
+  <!-- Include the Nav component -->
+  <Nav />
+
+  <!-- Include the NewTask component -->
+  <div class="bg-container pt-5 pb-5">
+    <NewTask />
+  </div>
+  <div class="wrapper container mt-4">
+    <!-- Display the heading for tasks -->
+    <h1 class="task120-heading mb-4 text-center">Your Tasks</h1>
+
+    <!-- Use v-for to loop through tasks and display TaskItem component for each task -->
+    <div class="task-grid">
+      <TaskItem class="task-item mb-3 mx-2" v-for="task in tasks" :key="task.id" :task="task" />
+    </div>
+  </div>
+</template>
+
+
 <script setup>
 // Import necessary modules from Vue
-import { ref, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 
 // Import the useTaskStore function from "../stores/task" to access the task store
 import { useTaskStore } from "../stores/task";
@@ -19,33 +39,9 @@ const tasks = computed(() => taskStore.tasksArr);
 // When the component is mounted, fetch the tasks from the task store
 onMounted(async () => {
   await taskStore.fetchTasks();
+
 });
 </script>
-
-<template>
-  <!-- Include the Nav component -->
-  <Nav />
-
-  <!-- Include the NewTask component -->
-
-  <div class="bg-container pt-5 pb-5">
-    <NewTask />
-  </div>
-
-
-  <div class="wrapper container mt-4">
-
-    <!-- Display the heading for tasks -->
-    <h1 class="task120-heading mb-4 text-center">Your Tasks</h1>
-
-    <!-- Use v-for to loop through tasks and display TaskItem component for each task -->
-    <div class="task-grid">
-      <TaskItem class="task-item mb-3 mx-2" v-for="task in tasks" :key="task.id" :task="task" />
-    </div>
-
-
-  </div>
-</template>
 
 <style scoped>
 .bg-container {

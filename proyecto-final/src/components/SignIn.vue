@@ -35,6 +35,10 @@ import PersonalRouter from "./PersonalRouter.vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
 import { ref } from "vue";
+import { useModalStore } from '../stores/modal'
+
+// Use Modal
+const modalStore = useModalStore()
 
 // Define the route and button text for sign up link
 const route = "/auth/signup";
@@ -58,7 +62,7 @@ const signIn = async () => {
 
   } catch (error) {
     // If unsuccessful, alert with the error
-    alert(error);
+    modalStore.openModal(error.message, 'error')
   }
 };
 </script>
