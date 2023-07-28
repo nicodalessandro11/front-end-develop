@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <button class="btn btn-primary mb-3" @click="editToggleProfile">Edit Profile</button>
+        <button class="btn btn-secondary btn-second  mb-3" @click="editToggleProfile">Edit Profile</button>
         <form v-if="inputUpdate" class="profile-form bg-light p-4 rounded shadow">
           <div class="form-group">
             <label for="full-name">Full name</label>
@@ -25,7 +25,7 @@
             <input id="location" v-model="profile.location" placeholder="Location" type="text" class="form-control" />
           </div>
 
-          <button type="button" @click="updateProfile" class="btn btn-primary mt-3">
+          <button type="button" @click="updateProfile" class="btn btn-secondary btn-second mt-3">
             Update Profile
           </button>
         </form>
@@ -39,7 +39,6 @@ import { ref, onMounted, computed } from "vue";
 import { useUserStore } from "../stores/user";
 import { supabase } from "../supabase";
 import { useModalStore } from '../stores/modal'
-import { watchEffect } from 'vue';
 
 // Use Modal store
 const modalStore = useModalStore()
@@ -92,11 +91,11 @@ const updateProfile = async () => {
   editToggleProfile()
 
   if (error) {
-    modalStore.openModal(error.message, 'error');
+    modalStore.openToast(error.message, 'error');
   } else {
     // Fetch the user profile again to get the updated avatar URL
     await userStore.fetchUser();
-    modalStore.openModal("Profile Successfully updated", 'success');
+    modalStore.openToast("Profile Successfully updated", 'success');
     // Emits the updated profile
     emit('updateProfileEmit', updatedProfileData)
   }

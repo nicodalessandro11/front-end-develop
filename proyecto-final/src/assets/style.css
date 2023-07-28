@@ -1,3 +1,55 @@
+@import "typeface-raleway";
+
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Raleway", sans-serif;
+}
+
+.text-thin {
+  font-weight: 300;
+}
+
+.text-thinner {
+  font-weight: 100;
+}
+
+.btn-second {
+  background-color: #d5dee6;
+  color: black;
+  border-color: #d5dee6;
+}
+
+.palette-0 {
+  background-color: #f7f6f8;
+}
+
+.palette-50 {
+  background-color: #daf0ff;
+}
+
+.palette-100 {
+  background-color: #b6e3ff;
+}
+
+.palette-200 {
+  background-color: #6dcdff;
+}
+
+.palette-300 {
+  color: rgb(192, 178, 131);
+}
+
+.palette-400 {
+  background-color: rgb(192, 178, 131);
+}
+
+.palette-500 {
+  background-color: #00688d;
+}
+
+.palette-600 {
+  background-color: #004f6c;
+}
+
+.palette-700 {
+  background-color: #003c52;
 }

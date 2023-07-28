@@ -1,3 +1,29 @@
+<template>
+    <div class="date-banner mb-3 text-center">
+        <span class="badge badge-secondary">
+            <i class="fas fa-calendar-day"></i>
+            Today is {{ todayDate }}
+        </span>
+    </div>
+
+    <div class="container mt-4 palette-200 pt-5 pb-5 ps-5 pe-5 rounded-4">
+        <h6 class="mb-3">Start organizing your tasks!</h6>
+        <h1 class="mb-3 text-thin">Add a new Task</h1>
+        <div v-if="showErrorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+        <div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Add a Task Title" v-model="name">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Add a Task Description" v-model="description">
+            </div>
+            <button @click="addTask" class="btn btn-secondary btn-second">Add</button>
+        </div>
+    </div>
+</template>
+
 <script setup>
 import { ref } from "vue";
 import { useTaskStore } from "../stores/task";
@@ -12,6 +38,10 @@ const description = ref('');
 // Create reactive variables to handle error messages
 const showErrorMessage = ref(false);
 const errorMessage = ref(null);
+
+// Create a reactive variable to display today's date
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const todayDate = ref(new Intl.DateTimeFormat('en-US', options).format(new Date()));
 
 // Function to add a task
 const addTask = () => {
@@ -36,29 +66,27 @@ const addTask = () => {
 };
 </script>
 
-
-<template>
-    <div class="container mt-4">
-        <h1 class="mb-3">Add a new Task</h1>
-        <div v-if="showErrorMessage" class="alert alert-danger" role="alert">
-            {{ errorMessage }}
-        </div>
-        <div>
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Add a Task Title" v-model="name">
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Add a Task Description" v-model="description">
-            </div>
-            <button @click="addTask" class="btn btn-primary">Add</button>
-        </div>
-    </div>
-</template>
-
 <style scoped>
 .container {
     max-width: 600px;
+    background-color: #222222;
+    color: white;
+}
+
+.date-banner {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.date-banner .badge {
+    background-color: #222222;
+    color: #f8f9fa;
+    padding: 15px 25px;
+    border-radius: 20px;
+    font-size: 17px;
+}
+
+.date-banner .badge i {
+    margin-right: 10px;
 }
 </style>
-
-  

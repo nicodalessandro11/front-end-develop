@@ -20,7 +20,7 @@
       </div>
 
       <div class="d-flex align-items-center">
-        <p class="navbar-text me-2 mb-0">Welcome, {{ userEmail }}</p>
+        <p class="navbar-text me-2 mb-0">{{ userEmail }}</p>
         <button @click="signOut" class="btn btn-outline-primary btn-sm">Log out</button>
       </div>
     </div>

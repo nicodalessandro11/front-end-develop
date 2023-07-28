@@ -11,13 +11,15 @@
             <div class="row">
               <div class="col-6 offset-md-3">
                 <input :key="inputKey" @change="fileManager" type="file" class="form-control" />
-                <button @click="uploadFile" class="btn btn-primary mt-2">Upload File</button>
+                <button @click="uploadFile" class="btn btn-secondary btn-second mt-2">Upload File</button>
               </div>
             </div>
           </div>
-          <h4 class="mb-2">Website: <a target="_blank" :href="website">{{ website }}</a></h4>
-          <h4 class="mb-2">Location: {{ location }}</h4>
+          <hr>
+          <h4 class="mb-2"><a target="_blank" :href="website">{{ website }}</a></h4>
+          <h4 class="mb-2">{{ location }}</h4>
           <p class="text-muted">{{ bio }}</p>
+          <hr>
           <Profile @updateProfileEmit="handleUpdateProfile" />
         </div>
       </div>
@@ -65,9 +67,9 @@ const handleUpdateProfile = async (updatedProfileData) => {
     .eq("user_id", supabase.auth.user().id);
 
   if (error) {
-    modalStore.openModal(error.message, 'error');
+    modalStore.openToast(error.message, 'error');
   } else {
-    modalStore.openModal("Profile Successfully updated", 'success');
+    modalStore.openToast("Profile Successfully updated", 'success');
     // Update the local value with the timestamp to avoid caching
     avatar_url.value = updatedProfileData.avatar_url;
     // Update local state with the updated profile data
@@ -81,12 +83,12 @@ const handleUpdateProfile = async (updatedProfileData) => {
 
 const uploadFile = async () => {
   if (!file.value) {
-    modalStore.openModal("No file selected!", 'error');
+    modalStore.openToast("No file selected!", 'error');
     return;
   }
 
   if (file.value.type !== "image/jpeg" && file.value.type !== "image/png") {
-    modalStore.openModal("Invalid file type. Only .jpeg and .png files are accepted.", 'error');
+    modalStore.openToast("Invalid file type. Only .jpeg and .png files are accepted.", 'error');
     return;
   }
 
@@ -101,7 +103,7 @@ const uploadFile = async () => {
     .remove([deleteUrl]);
 
   if (urlDeleteError) {
-    modalStore.openModal(urlDeleteError.message, 'error');
+    modalStore.openToast(urlDeleteError.message, 'error');
     return;
   }
 
@@ -112,7 +114,7 @@ const uploadFile = async () => {
     .upload(filePath, file.value);
 
   if (uploadError) {
-    modalStore.openModal(uploadError.message, 'error');
+    modalStore.openToast(uploadError.message, 'error');
     return;
   }
 
@@ -121,7 +123,7 @@ const uploadFile = async () => {
     .getPublicUrl(filePath);
 
   if (urlError) {
-    modalStore.openModal(urlError.message, 'error');
+    modalStore.openToast(urlError.message, 'error');
     return;
   }
 
@@ -133,7 +135,7 @@ const uploadFile = async () => {
     .eq("user_id", supabase.auth.user().id);
 
   if (updateError) {
-    modalStore.openModal(updateError.message, 'error');
+    modalStore.openToast(updateError.message, 'error');
     return;
   }
 
@@ -141,7 +143,7 @@ const uploadFile = async () => {
 
   file.value = null; // Clear the file input
   inputKey.value = Date.now(); // Change the key to force rerendering of the input field
-  modalStore.openModal("Profile Successfully updated", 'success'); // Single success message
+  modalStore.openToast("Profile Successfully updated", 'success'); // Single success message
 };
 
 // Define a function to get the user's profile details
@@ -171,23 +173,37 @@ onMounted(() => {
 
 
 <style scoped>
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px;
+  background-color: #f7f7f7;
+}
+
+.profile-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
 .profile-card h3 {
-  font-size: 1.75em;
+  font-size: 2em;
   color: #333;
 }
 
 .profile-card h4 {
   font-size: 1.25em;
-  color: #666;
+  color: black;
 }
 
 .profile-card p {
   font-size: 1em;
-  color: #999;
+  color: black;
 }
 
 .profile-card a {
-  color: #1a0dab;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -196,11 +212,26 @@ onMounted(() => {
 }
 
 .profile-card .btn {
-  width: 100%;
+  width: 50%;
+  background-color: #d5dee6;
+  color: black;
+  border-color: #d5dee6;
+  border-radius: 5px;
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-card .btn:hover {
+  background-color: grey;
+  color: white;
 }
 
 .profile-card .form-control {
-  border-radius: 0;
+  background-color: #f7f7f7;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .profile-picture {
@@ -208,5 +239,6 @@ onMounted(() => {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid #ccc;
 }
 </style>

@@ -12,6 +12,7 @@
     "moment": "^2.29.4",
     "pinia": "^2.0.17",
     "pinia-plugin-persist": "^1.0.0",
+    "typeface-raleway": "^1.1.13",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"
   },

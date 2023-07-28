@@ -62,7 +62,7 @@ const signIn = async () => {
 
   } catch (error) {
     // If unsuccessful, alert with the error
-    modalStore.openModal(error.message, 'error')
+    modalStore.openToast(error.message, 'error')
   }
 };
 </script>
@@ -72,19 +72,21 @@ const signIn = async () => {
 .wrapper {
   max-width: 800px;
   margin: auto;
+  color: #fff;
 }
 
 .container {
   max-width: 600px;
   margin: auto;
   padding: 2em;
-  background-color: #f9f9f9;
+  background-color: #222222;
+  color: #fff;
   border-radius: 4px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-title {
-  color: #333;
+  color: #fff;
   text-align: center;
   margin-bottom: 1em;
 }
@@ -101,26 +103,28 @@ const signIn = async () => {
   border: 1px solid #ccc;
 }
 
-.button {
+.btn {
   width: 100%;
   padding: 0.5em;
-  background-color: #00688d;
-  color: white;
+  background-color: #007bff;
+  color: black;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #00506b;
+.btn:hover {
+  background-color: grey;
+  color: white;
 }
 
 .sign-up-link {
-  color: #00688d;
+  color: rgb(192, 178, 131);
 }
 
 .sign-up-link:hover {
   text-decoration: underline;
 }
 </style>
+

@@ -11,7 +11,7 @@
     <form @submit.prevent="signUp" class="form-sign-in mx-auto w-50">
       <div class="form mb-3">
         <div class="form-input mb-3">
-          <label class="input-field-label">E-mail</label>
+          <label class="input-field-label font-weight-light">E-mail</label>
           <input type="email" class="form-control" placeholder="example@gmail.com" id="email" v-model="email" required />
         </div>
         <div class="form-input mb-3">
@@ -27,7 +27,7 @@
         <button class="btn btn-primary btn-lg" type="submit">Sign Up</button>
         <p class="mt-3">
           Have an account?
-          <PersonalRouter :route="route" :buttonText="buttonText" class="sign-up-link" />
+          <PersonalRouter :route="route" :buttonText="buttonText" class="sign-in-link " />
         </p>
       </div>
     </form>
@@ -85,25 +85,23 @@ const signUp = async () => {
   max-width: 600px;
   margin: auto;
   padding: 2em;
-  background-color: #f9f9f9;
+  background-color: #222222;
   border-radius: 4px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: #f9f9f9;
 }
 
 .header-title {
   font-size: 2.5em;
-  color: #3c3c3c;
   margin-bottom: 0.5em;
 }
 
 .header-subtitle {
   font-size: 1.3em;
-  color: #6c757d;
 }
 
 .input-field-label {
-  font-weight: bold;
-  color: #495057;
+  font-weight: lighter;
 }
 
 .alert-danger {
@@ -112,7 +110,19 @@ const signUp = async () => {
 
 .btn-primary {
   width: 100%;
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: grey;
+  color: white;
+}
+
+.sign-in-link {
+  color: rgb(192, 178, 131);
 }
 </style>
+
 
 

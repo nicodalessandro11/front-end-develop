@@ -1,8 +1,8 @@
 <template>
-    <Teleport to="body">
-        <div v-if="isModalOpen" class="my-modal" :style="{ backgroundColor: backgroundColor, borderColor: borderColor }">
+    <Teleport to="#modal-container">
+        <div v-if="isToastOpen" class="my-modal" :style="{ backgroundColor: backgroundColor, borderColor: borderColor }">
             <p class="modal-text">{{ message }}</p>
-            <button @click="closeModal" class="close-button">
+            <button @click="handleCloseToast" class="close-button">
                 <i class="fas fa-times"></i> <!-- X icon -->
             </button>
         </div>
@@ -15,11 +15,11 @@ import { useModalStore } from '../stores/modal'
 
 const modalStore = useModalStore()
 
-const isModalOpen = computed(() => modalStore.isModalOpen)
+const isToastOpen = computed(() => modalStore.isToastOpen)
 const message = computed(() => modalStore.message)
 const messageType = computed(() => modalStore.messageType)
 
-setTimeout(isModalOpen.value = false, 2000)
+setTimeout(isToastOpen.value = false, 2000)
 
 // Determine colors based on messageType
 const backgroundColor = computed(() => {
@@ -48,8 +48,8 @@ const borderColor = computed(() => {
     }
 });
 
-const closeModal = () => {
-    modalStore.closeModal()
+const handleCloseToast = () => {
+    modalStore.closeToast()
 }
 </script>
 

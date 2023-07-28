@@ -1,12 +1,15 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title" :class="{ 'text-decoration-line-through': task.is_complete }">{{ task.title }}</h3>
-      <p class="card-text" :class="{ 'text-decoration-line-through': task.is_complete }">{{ task.description }}</p>
+      <div :class="{ 'task-complete': task.is_complete }" class="task-content">
+        <h3 class="card-title">{{ task.title }}</h3>
+        <p class="card-text">{{ task.description }}</p>
+        <span v-if="task.is_complete" class="badge bg-success">Completed</span>
+      </div>
 
       <div class="button-group mt-2">
-        <button class="btn btn-delete me-2" @click="deleteTask"><i class="fas fa-trash-alt"></i></button>
-        <button class="btn btn-complete me-2" @click="toggleComplete"><i class="fas fa-check-circle"></i></button>
+        <button class="btn btn-delete me-2" @click="openDeleteConfirmation"><i class="fas fa-trash-alt"></i></button>
+        <button class="btn btn-complete me-2" @click="handleComplete"><i class="fas fa-check-circle"></i></button>
         <button class="btn btn-edit me-2" @click="updateToggle"><i class="fas fa-edit"></i></button>
       </div>
 
@@ -25,14 +28,18 @@
 
 <script setup>
 // Import necessary modules from Vue
-import { ref, defineProps } from "vue";
+import { ref, watch } from "vue";
 
 // Import the useTaskStore function from "../stores/task" to access the task store
-import { useTaskStore } from "../stores/task";
+import { useTaskStore } from "../stores/task.js";
+import { useModalStore } from "../stores/modal";
 
 
 // Initialize the taskStore using the useTaskStore function
 const taskStore = useTaskStore();
+
+// Initialize the modalSTORE
+const modalStore = useModalStore()
 
 // Create reactive variables using ref()
 const name = ref(props.task.title);
@@ -47,6 +54,20 @@ const props = defineProps({
 const deleteTask = async () => {
   await taskStore.deleteTask(props.task.id);
 };
+
+// Function to handle opening of delete confirmation modal
+const openDeleteConfirmation = () => {
+  modalStore.openModal("Are you sure you want to delete the task?")
+}
+
+// Watch for confirmation changes from modalStore
+watch(() => modalStore.confirmation, (newVal) => {
+  if (newVal === true) {
+    deleteTask()
+    modalStore.resetConfirmation()
+    modalStore.closeModal()
+  }
+}, { immediate: true })
 
 // Create a reactive variable to handle input update
 const inputUpdate = ref(false);
@@ -64,17 +85,26 @@ const updateTask = () => {
   updateToggle();
 };
 
-// Function to toggle the completion state of a task
+// Functions to handle and toggle the completion state of a task
 const toggleComplete = () => {
   props.task.is_complete = !props.task.is_complete;
   taskStore.completeTask(props.task.id, props.task.is_complete);
 };
+
+const handleComplete = () => {
+  if (!props.task.is_complete) {
+    modalStore.openToast("Congratulations, your task is completed!", 'success')
+  }
+  toggleComplete()
+}
+
 </script>
 
 <style scoped>
 .card {
   margin: 1rem 0;
-  background-color: rgb(247, 246, 248);
+  background-color: #F7F6F8;
+  border-color: rgb(60, 60, 60)
 }
 
 .button-group {
@@ -92,26 +122,22 @@ const toggleComplete = () => {
 }
 
 .btn-delete {
-  background-color: rgb(249, 213, 226);
+  background-color: rgb(204, 12, 57);
   border-width: 1px;
-  border-color: rgb(204, 12, 57);
   border-style: solid;
   border-radius: 4px;
   box-shadow: rgba(2, 8, 14, 0.1) 0px 8px 16px 0px;
-  color: rgb(60, 60, 60);
-
+  color: white;
 }
 
 .btn-complete {
-  background-color: rgb(220, 243, 160);
-  border-color: rgb(152, 201, 30);
-  color: rgb(60, 60, 60);
-
+  background-color: rgb(152, 201, 30);
+  color: black
 }
 
 .btn-edit {
-  background-color: #00688d;
-  color: #fff;
+  background-color: rgb(220, 183, 0);
+  color: black
 }
 
 .btn-update {
@@ -126,7 +152,14 @@ const toggleComplete = () => {
 .btn-update:hover {
   opacity: 0.8;
 }
+
+.task-content {
+  height: 120px;
+  overflow: auto;
+}
+
+.task-complete .card-title,
+.task-complete .card-text {
+  color: #888;
+}
 </style>
-
-
-

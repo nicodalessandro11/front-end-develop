@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ModalComponent />
+    <Modal />
+    <Toast />
     <router-view />
   </div>
 </template>
@@ -11,7 +12,8 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./stores/user.js";
 import { ref } from "vue";
-import ModalComponent from "./components/ModalComponent.vue";
+import Modal from "./components/Modal.vue";
+import Toast from "./components/Toast.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
