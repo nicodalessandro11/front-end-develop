@@ -15,7 +15,7 @@ export const useModalStore = defineStore({
       this.message = message;
       this.messageType = messageType;
 
-      // Closes the modal automatically after 2 seconds
+      // Closes the toast automatically after 2 seconds
       setTimeout(() => {
         this.closeToast();
       }, 2000);
